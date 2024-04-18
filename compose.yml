@@ -1,0 +1,25 @@
+---
+services:
+  openvscode:
+    image: openvscode-graphviz
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: openvscode-graphviz
+    user: root
+    environment:
+      # - PUID=1000
+      # - PGID=1000
+      - TZ=Etc/UTC
+      # - CONNECTION_TOKEN= #optional
+      # - CONNECTION_SECRET= #optional
+      - SUDO_PASSWORD=password
+      # - SUDO_PASSWORD_HASH= #optional
+      - DEFAULT_WORKSPACE=/code
+    volumes:
+      - code:/code
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+volumes:
+  code:
